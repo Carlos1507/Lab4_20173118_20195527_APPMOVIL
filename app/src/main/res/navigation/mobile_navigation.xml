@@ -7,6 +7,38 @@
     <fragment
         android:id="@+id/indexFragment"
         android:name="ayala.carlos.lab4_20173118_20195527.IndexFragment"
-        android:label="fragment_index"
-        tools:layout="@layout/fragment_index" />
+        android:label=""
+        tools:layout="@layout/fragment_index" >
+        <action
+            android:id="@+id/action_indexFragment_to_trabajadorFragment"
+            app:destination="@id/trabajadorFragment"
+            app:popUpTo="@id/trabajadorFragment"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_indexFragment_to_tutorFragment"
+            app:destination="@id/tutorFragment"
+            app:popUpTo="@id/tutorFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/trabajadorFragment"
+        android:name="ayala.carlos.lab4_20173118_20195527.FragmentosTrabajador.TrabajadorFragment"
+        android:label=""
+        tools:layout="@layout/fragment_trabajador" >
+        <action
+            android:id="@+id/action_trabajadorFragment_to_informacionTrabajadorFragment"
+            app:destination="@id/informacionTrabajadorFragment"
+            app:popUpTo="@id/informacionTrabajadorFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/informacionTrabajadorFragment"
+        android:name="ayala.carlos.lab4_20173118_20195527.FragmentosTrabajador.InformacionTrabajadorFragment"
+        android:label=""
+        tools:layout="@layout/fragment_informacion_trabajador" />
+    <fragment
+        android:id="@+id/tutorFragment"
+        android:name="ayala.carlos.lab4_20173118_20195527.FragmentosTutor.TutorFragment"
+        android:label=""
+        tools:layout="@layout/fragment_tutor" />
 </navigation>
