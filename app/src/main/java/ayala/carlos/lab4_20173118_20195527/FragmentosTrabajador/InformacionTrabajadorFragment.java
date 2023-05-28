@@ -48,7 +48,7 @@ public class InformacionTrabajadorFragment extends Fragment {
     String channelId = "channelHighPriorTrabajador";
     FragmentInformacionTrabajadorBinding binding;
     TrabajadorService trabajadorService = new Retrofit.Builder()
-            .baseUrl("http://192.168.1.35:8081")
+            .baseUrl("http://10.0.2.2:8081")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(TrabajadorService.class);
