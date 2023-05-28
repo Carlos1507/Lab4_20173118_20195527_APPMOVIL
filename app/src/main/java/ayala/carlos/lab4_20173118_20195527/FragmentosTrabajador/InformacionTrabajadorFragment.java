@@ -1,8 +1,16 @@
 package ayala.carlos.lab4_20173118_20195527.FragmentosTrabajador;
 
+import static android.Manifest.permission.POST_NOTIFICATIONS;
+
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -19,6 +27,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 
+import ayala.carlos.lab4_20173118_20195527.MainActivity;
+import ayala.carlos.lab4_20173118_20195527.R;
 import ayala.carlos.lab4_20173118_20195527.databinding.FragmentInformacionTrabajadorBinding;
 import ayala.carlos.lab4_20173118_20195527.dtos.BusquedaTrabajadorDto;
 import ayala.carlos.lab4_20173118_20195527.entities.Countries;
@@ -35,6 +45,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class InformacionTrabajadorFragment extends Fragment {
+    String channelId = "channelHighPriorTrabajador";
     FragmentInformacionTrabajadorBinding binding;
     TrabajadorService trabajadorService = new Retrofit.Builder()
             .baseUrl("http://192.168.1.35:8081")
@@ -46,8 +57,6 @@ public class InformacionTrabajadorFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentInformacionTrabajadorBinding.inflate(inflater, container, false);
-
-        EmpleadoDescargarViewModel empleadoDescargarViewModel = new ViewModelProvider(requireActivity()).get(EmpleadoDescargarViewModel.class);
 
         ocultarLabelsyTextos(binding);
         binding.botonBuscarTrabajador.setOnClickListener(view -> {
@@ -68,6 +77,14 @@ public class InformacionTrabajadorFragment extends Fragment {
                                     setearTextos(binding, busquedaTrabajadorDto.getEmpleado());
                                     mostrarLabelsyTextos(binding);
                                     HashMap<String, Object> datosDisplay = obtenerDatosDisplay(binding);
+                                    if (busquedaTrabajadorDto.getEmpleado().getMeeting()==1){
+                                        if (busquedaTrabajadorDto.getEmpleado().getMeetingDate()!=null &&
+                                                !busquedaTrabajadorDto.getEmpleado().getMeetingDate().equals("")){
+                                            lanzarNotificacionIfMeeting(busquedaTrabajadorDto.getEmpleado().getMeetingDate());
+                                        }else {
+                                            lanzarNotificacionIfMeeting("No se ha establecido la fecha y hora");
+                                        }
+                                    }
                                     binding.descargar.setOnClickListener(view1 -> {
                                         guardarDatosComoJson(datosDisplay, binding);
                                         Toast.makeText(getContext(), "Descarga Exitosa!", Toast.LENGTH_SHORT).show();
@@ -220,5 +237,29 @@ public class InformacionTrabajadorFragment extends Fragment {
             e.printStackTrace();
         }
     }
+    public void lanzarNotificacionIfMeeting(String fecha_hora){
+        Intent intent = new Intent(getActivity(), MainActivity.class);
 
+        String[] fechaHoras = fecha_hora.split("T");
+        String horasMinutos = fechaHoras[1].substring(0,5);
+        String horas = horasMinutos.split(":")[0];
+        String minutos = horasMinutos.split(":")[1];
+        String fechaHoraMostrar = horas + " h";
+        if (!minutos.equals("00"))
+            fechaHoraMostrar+=(" "+ minutos+" min");
+
+
+        PendingIntent pendingIntent = PendingIntent.getActivity(getActivity(), 0, intent, PendingIntent.FLAG_IMMUTABLE);
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(getActivity(), channelId)
+                .setSmallIcon(R.drawable.baseline_accessibility_24)
+                .setContentTitle("Usted tiene una tutoría pendiente")
+                .setContentText("Fecha: "+fechaHoras[0]+ " | Hora: "+fechaHoraMostrar)
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setContentIntent(pendingIntent)
+                .setAutoCancel(true);
+        NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(getActivity());
+        if (ActivityCompat.checkSelfPermission(getActivity(), POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED){
+            notificationManagerCompat.notify(1, builder.build());
+        }
+    }
 }
