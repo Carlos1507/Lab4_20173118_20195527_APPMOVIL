@@ -40,5 +40,26 @@
         android:id="@+id/tutorFragment"
         android:name="ayala.carlos.lab4_20173118_20195527.FragmentosTutor.TutorFragment"
         android:label=""
-        tools:layout="@layout/fragment_tutor" />
+        tools:layout="@layout/fragment_tutor" >
+        <action
+            android:id="@+id/action_tutorFragment_to_buscarTrabajadorFragment"
+            app:destination="@id/buscarTrabajadorFragment"
+            app:popUpTo="@id/buscarTrabajadorFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_tutorFragment_to_asignarTutoriaFragment"
+            app:destination="@id/asignarTutoriaFragment"
+            app:popUpTo="@id/asignarTutoriaFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/buscarTrabajadorFragment"
+        android:name="ayala.carlos.lab4_20173118_20195527.FragmentosTutor.buscarTrabajadorFragment"
+        android:label="fragment_buscar_trabajador"
+        tools:layout="@layout/fragment_buscar_trabajador" />
+    <fragment
+        android:id="@+id/asignarTutoriaFragment"
+        android:name="ayala.carlos.lab4_20173118_20195527.FragmentosTutor.asignarTutoriaFragment"
+        android:label="fragment_asignar_tutoria"
+        tools:layout="@layout/fragment_asignar_tutoria" />
 </navigation>

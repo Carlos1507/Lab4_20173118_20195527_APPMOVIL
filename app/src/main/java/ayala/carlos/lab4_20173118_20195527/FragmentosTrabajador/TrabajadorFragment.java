@@ -42,8 +42,12 @@ public class TrabajadorFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentTrabajadorBinding.inflate(inflater, container, false);
+
+
         lanzarNotificacionInicio();
         NavController navController = NavHostFragment.findNavController(TrabajadorFragment.this);
+
+
         binding.buttonInformacion.setOnClickListener(view -> {
             navController.navigate(R.id.action_trabajadorFragment_to_informacionTrabajadorFragment);
         });
