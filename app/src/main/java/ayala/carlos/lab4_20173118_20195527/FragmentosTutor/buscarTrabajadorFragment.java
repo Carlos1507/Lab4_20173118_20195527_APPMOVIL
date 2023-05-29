@@ -76,6 +76,7 @@ public class buscarTrabajadorFragment extends Fragment {
 
                         @Override
                         public void onFailure(Call<BusquedaTrabajadorDto> call, Throwable t) {
+                            binding.errorID2.setText("Trabajador no encontrado");
                             t.printStackTrace();
                         }
                     });
