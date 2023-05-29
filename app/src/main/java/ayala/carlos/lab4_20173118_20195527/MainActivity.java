@@ -23,8 +23,10 @@ public class MainActivity extends AppCompatActivity {
         actionBar.setTitle("Tutorías Laborales");
 
         createNotificationChannelTrabajador();
+        createNotificationChannelTutor();
     }
     String channelId = "channelHighPriorTrabajador";
+    String channelId2 = "channelHighPriorTutor";
     public void createNotificationChannelTrabajador(){
         if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
             NotificationChannel channel =new NotificationChannel(channelId, "Canal notificaciones High", NotificationManager.IMPORTANCE_HIGH);
@@ -34,6 +36,17 @@ public class MainActivity extends AppCompatActivity {
             askPermission();
         }
     }
+
+    public void createNotificationChannelTutor(){
+        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
+            NotificationChannel channel =new NotificationChannel(channelId2, "Canal notificaciones High", NotificationManager.IMPORTANCE_HIGH);
+            channel.setDescription("Canal para notificaciones con prioridad Alta");
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+            askPermission();
+        }
+    }
+
     public void askPermission(){
         if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.TIRAMISU &&
                 ActivityCompat.checkSelfPermission(this, POST_NOTIFICATIONS) == PackageManager.PERMISSION_DENIED){
