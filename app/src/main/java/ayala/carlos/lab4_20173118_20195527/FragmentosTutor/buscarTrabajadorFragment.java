@@ -51,6 +51,7 @@ public class buscarTrabajadorFragment extends Fragment {
         binding = FragmentBuscarTrabajadorBinding.inflate(inflater, container, false);
 
         binding.descargarDatos.setOnClickListener(view -> {
+            binding.errorID2.setText("");
             String id = binding.textIDtrabajador.getText().toString();
             if (!id.equals("")){
                 try{
@@ -97,24 +98,24 @@ public class buscarTrabajadorFragment extends Fragment {
 
         HashMap<String, Object> info = new HashMap<>();
 
-        info.put("Id", employee.getEmployeeId());
+        info.put("Id", employee.getEmployeeId().toString());
 
         String firstName = employee.getFirstName();
         if (firstName!=null || !firstName.equals(""))
-            info.put("Nombre", employee.getEmployeeId());
+            info.put("Nombre", employee.getEmployeeId().toString());
         else
             info.put("Nombre", "Sin nombre");
 
-        info.put("Apellido",employee.getLastName());
-        info.put("Correo", employee.getEmail());
+        info.put("Apellido",employee.getLastName().toString());
+        info.put("Correo", employee.getEmail().toString());
 
         String phoneNumber = employee.getPhoneNumber();
         if (phoneNumber!=null || !phoneNumber.equals(""))
-            info.put("Celular",employee.getPhoneNumber());
+            info.put("Celular",employee.getPhoneNumber().toString());
         else
             info.put("Celular", "Sin celular");
 
-        info.put("Puesto", employee.getJobId().getJobTitle());
+        info.put("Puesto", employee.getJobId().getJobTitle().toString());
 
         Float salario = employee.getSalary();
         if (salario!=null)
@@ -128,7 +129,7 @@ public class buscarTrabajadorFragment extends Fragment {
             info.put("Pais", "Sin informacion");
             info.put("Region", "Sin informacion");
         }else {
-            info.put("Departamento", employee.getDepartmentId().getDepartmentName());
+            info.put("Departamento", employee.getDepartmentId().getDepartmentName().toString());
             Locations locationId = employee.getDepartmentId().getLocationId();
             if (locationId==null){
                 info.put("Pais", "Sin informacion");
@@ -139,12 +140,12 @@ public class buscarTrabajadorFragment extends Fragment {
                     info.put("Pais", "Sin informacion");
                     info.put("Region", "Sin informacion");
                 }else{
-                    info.put("Pais", employee.getDepartmentId().getLocationId().getCountryId().getCountryName());
+                    info.put("Pais", employee.getDepartmentId().getLocationId().getCountryId().getCountryName().toString());
                     Regions regionId = employee.getDepartmentId().getLocationId().getCountryId().getRegionId();
                     if (regionId==null){
                         info.put("Region", "Sin informacion");
                     }else {
-                        info.put("Region", employee.getDepartmentId().getLocationId().getCountryId().getRegionId().getRegionName());
+                        info.put("Region", employee.getDepartmentId().getLocationId().getCountryId().getRegionId().getRegionName().toString());
                     }
                 }
             }
