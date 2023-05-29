@@ -45,10 +45,27 @@
         android:id="@+id/tutorFragment"
         android:name="ayala.carlos.lab4_20173118_20195527.FragmentosTutor.TutorFragment"
         android:label=""
-        tools:layout="@layout/fragment_tutor" />
+        tools:layout="@layout/fragment_tutor" >
+        <action
+            android:id="@+id/action_tutorFragment_to_asignarTutoriaFragment"
+            app:destination="@id/asignarTutoriaFragment" />
+        <action
+            android:id="@+id/action_tutorFragment_to_buscarTrabajadorFragment"
+            app:destination="@id/buscarTrabajadorFragment" />
+    </fragment>
     <fragment
         android:id="@+id/descargarHorariosFragment"
-        android:name="ayala.carlos.lab4_20173118_20195527.DescargarHorariosFragment"
+        android:name="ayala.carlos.lab4_20173118_20195527.FragmentosTrabajador.DescargarHorariosFragment"
         android:label=""
         tools:layout="@layout/fragment_descargar_horarios" />
+    <fragment
+        android:id="@+id/asignarTutoriaFragment"
+        android:name="ayala.carlos.lab4_20173118_20195527.FragmentosTutor.asignarTutoriaFragment"
+        android:label="fragment_asignar_tutoria"
+        tools:layout="@layout/fragment_asignar_tutoria" />
+    <fragment
+        android:id="@+id/buscarTrabajadorFragment"
+        android:name="ayala.carlos.lab4_20173118_20195527.FragmentosTutor.buscarTrabajadorFragment"
+        android:label="fragment_buscar_trabajador"
+        tools:layout="@layout/fragment_buscar_trabajador" />
 </navigation>

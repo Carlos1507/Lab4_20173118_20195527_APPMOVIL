@@ -53,45 +53,8 @@ public class TrabajadorFragment extends Fragment {
         });
 
         binding.buttonDescargarHorarios.setOnClickListener(view -> {
-            Context context = getActivity();
-            String permission = android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q ||
-                ContextCompat.checkSelfPermission(getActivity(),permission) == PackageManager.PERMISSION_GRANTED){
-                String fileName = "horarios.jpg";
-                String endPoint = "https://i.pinimg.com/564x/4e/8e/a5/4e8ea537c896aa277e6449bdca6c45da.jpg";
-                Uri downloadUri = Uri.parse(endPoint);
-                DownloadManager.Request request = new DownloadManager.Request(downloadUri);
-                request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI | DownloadManager.Request.NETWORK_MOBILE);
-                request.setAllowedOverRoaming(false);
-                request.setTitle(fileName);
-                request.setMimeType("image/jpg");
-                request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-                request.setDestinationInExternalPublicDir(Environment.DIRECTORY_PICTURES, File.separator+fileName);
-                DownloadManager dm = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
-                dm.enqueue(request);
-            }else {
-                ActivityResultLauncher<String> launcher = registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted->{
-                    if (isGranted){
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q ||
-                                ContextCompat.checkSelfPermission(getActivity(),permission) == PackageManager.PERMISSION_GRANTED){
-                            String fileName = "horarios.jpg";
-                            String endPoint = "https://i.pinimg.com/564x/4e/8e/a5/4e8ea537c896aa277e6449bdca6c45da.jpg";
-                            Uri downloadUri = Uri.parse(endPoint);
-                            DownloadManager.Request request = new DownloadManager.Request(downloadUri);
-                            request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI | DownloadManager.Request.NETWORK_MOBILE);
-                            request.setAllowedOverRoaming(false);
-                            request.setTitle(fileName);
-                            request.setMimeType("image/jpg");
-                            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-                            request.setDestinationInExternalPublicDir(Environment.DIRECTORY_PICTURES, File.separator+fileName);
-                            DownloadManager dm = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
-                            dm.enqueue(request);
-                        }
-                    }else {
-                        Log.e("msg-test", "Permiso denegado");
-                    }
-                });
-            }
+
+            navController.navigate(R.id.action_trabajadorFragment_to_descargarHorariosFragment2);
         });
 
         return binding.getRoot();

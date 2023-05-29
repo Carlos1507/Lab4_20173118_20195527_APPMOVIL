@@ -92,7 +92,8 @@ public class InformacionTrabajadorFragment extends Fragment {
 
                                 }
                             }else {
-                                Log.d("msg-txt","error en el ws");
+                                binding.errorID.setTextSize(24);
+                                binding.errorID.setText("No encontrado");
                             }
                         }
                         @Override
