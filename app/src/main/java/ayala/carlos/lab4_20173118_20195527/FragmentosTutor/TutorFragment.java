@@ -18,6 +18,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -49,6 +50,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class TutorFragment extends Fragment {
     FragmentTutorBinding binding;
+
     String channelId2 = "channelHighPriorTutor";
 
 
@@ -62,12 +64,13 @@ public class TutorFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+   //     binding = FragmentTutorBinding.inflate(inflater, container, false);
         binding = FragmentTutorBinding.inflate(inflater, container, false);
-
         lanzarNotificacionInicio();
         NavController navController = NavHostFragment.findNavController(TutorFragment.this);
-
         //AL HACER CLICK EN EL BOTON DESCARGAR LISTA DE TRABAJADORES
+
+
         binding.botonDescargar.setOnClickListener(view -> {
             trabajadorService.buscarTrabajadorTodos().enqueue(new Callback<BusquedaTrabajadoresDto>() {
                 @Override
@@ -85,7 +88,27 @@ public class TutorFragment extends Fragment {
             });
         });
 
-        //AL HACER CLICK EN EL BOTON BUSCAR TRABAJADOR
+        /*
+        binding.botonDescargar.setOnClickListener(view -> {
+            trabajadorService.buscarTrabajadorTodos().enqueue(new Callback<List<Employees>>() {
+                @Override
+                public void onResponse(Call<List<Employees>> call, Response<List<Employees>> response) {
+                    System.out.println("tamaño + "+response.body().size());
+                    List<Employees> listaTrabajadores = response.body();
+                    HashMap<String, HashMap<String, Object>> datosDisplay = obtenerDatosDisplay2(listaTrabajadores);
+                    guardarDatosComoJson2(datosDisplay, binding);
+                    Toast.makeText(getContext(), "Descarga Exitosa!", Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onFailure(Call<List<Employees>> call, Throwable t) {
+
+                }
+            });
+        });
+
+         */
+         //AL HACER CLICK EN EL BOTON BUSCAR TRABAJADOR
         binding.botonBuscar.setOnClickListener(view -> {
             navController.navigate(R.id.action_tutorFragment_to_buscarTrabajadorFragment);
         });
