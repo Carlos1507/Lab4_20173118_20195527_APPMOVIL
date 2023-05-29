@@ -8,6 +8,20 @@
     tools:context=".FragmentosTutor.asignarTutoriaFragment" >
 
     <TextView
+        android:id="@+id/errorIDDescargar2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="68dp"
+        android:text=""
+        android:textColor="@color/rojo"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnasignar" />
+
+    <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -19,7 +33,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.591"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textTutor" />
+        app:layout_constraintTop_toBottomOf="@+id/idTextTutor" />
 
     <TextView
         android:id="@+id/textView7"
@@ -36,7 +50,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/textAsignado"
+        android:id="@+id/idTextEmpleado"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginTop="24dp"
@@ -52,7 +66,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <EditText
-        android:id="@+id/textTutor"
+        android:id="@+id/idTextTutor"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginTop="12dp"
@@ -75,7 +89,6 @@
         android:text="ASIGNAR TUTORIA"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.556"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textAsignado" />
+        app:layout_constraintTop_toBottomOf="@+id/idTextEmpleado" />
 </androidx.constraintlayout.widget.ConstraintLayout>
