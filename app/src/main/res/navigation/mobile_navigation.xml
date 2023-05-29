@@ -30,6 +30,11 @@
             app:destination="@id/informacionTrabajadorFragment"
             app:popUpTo="@id/informacionTrabajadorFragment"
             app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_trabajadorFragment_to_descargarHorariosFragment2"
+            app:destination="@id/descargarHorariosFragment"
+            app:popUpTo="@id/descargarHorariosFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/informacionTrabajadorFragment"
@@ -41,4 +46,9 @@
         android:name="ayala.carlos.lab4_20173118_20195527.FragmentosTutor.TutorFragment"
         android:label=""
         tools:layout="@layout/fragment_tutor" />
+    <fragment
+        android:id="@+id/descargarHorariosFragment"
+        android:name="ayala.carlos.lab4_20173118_20195527.DescargarHorariosFragment"
+        android:label=""
+        tools:layout="@layout/fragment_descargar_horarios" />
 </navigation>
