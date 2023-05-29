@@ -34,7 +34,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class DescargarHorariosFragment extends Fragment {
     FragmentDescargarHorariosBinding binding;
     TrabajadorService trabajadorService = new Retrofit.Builder()
-            .baseUrl("http://10.0.2.2:8081")
+            .baseUrl("http://10.0.2.2:8082")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(TrabajadorService.class);
@@ -60,6 +60,9 @@ public class DescargarHorariosFragment extends Fragment {
                                     if (trabajador.getMeeting()==1){
                                         Context context = getActivity();
                                         String permission = android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
+                                        binding.errorIDDescargar.setText("Descarga exitosa, revise los horarios disponibles");
+                                        binding.errorIDDescargar.setTextColor(getResources().getColor(R.color.verde));
+                                        binding.errorIDDescargar.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
                                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q ||
                                                 ContextCompat.checkSelfPermission(getActivity(),permission) == PackageManager.PERMISSION_GRANTED){
                                             String fileName = "horarios.jpg";
