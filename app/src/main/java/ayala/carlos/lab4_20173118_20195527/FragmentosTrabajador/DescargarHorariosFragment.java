@@ -34,7 +34,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class DescargarHorariosFragment extends Fragment {
     FragmentDescargarHorariosBinding binding;
     TrabajadorService trabajadorService = new Retrofit.Builder()
-            .baseUrl("http://10.0.2.2:8082")
+            .baseUrl("http://10.0.2.2:8081")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(TrabajadorService.class);
